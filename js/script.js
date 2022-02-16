@@ -63,12 +63,16 @@ function checkingBalance() {
 
         document.getElementById('income-error2').style.display = 'none';
 
+        balance.innerText = '000';
+
     }
     else if (parseFloat(income.value) < parseFloat(totalExpenses.innerText)) {
         document.getElementById('income').style.border = '4px solid red';
         document.getElementById('income-error2').style.display = 'block';
 
         document.getElementById('income-error').style.display = 'none';
+
+        balance.innerText = '000';
     }
 
     else {
@@ -102,7 +106,10 @@ function remainingBalanceCalculation() {
     let balance = document.getElementById('balance');
     let savingAmount = document.getElementById('saving-amount');
     let remainingBalance = document.getElementById('remaining-balance');
-    if (parseFloat(balance.innerText) <= parseFloat(savingAmount.innerText)) {
+    if (parseFloat(balance.innerText) == 0) {
+        document.getElementById('saving-error2').style.display = 'block';
+    }
+    else if (parseFloat(balance.innerText) <= parseFloat(savingAmount.innerText)) {
         document.getElementById('saving-percentage').style.border = '4px solid red';
         document.getElementById('saving-error').style.display = 'block';
         remainingBalance.innerText = '000';
