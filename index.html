@@ -5,26 +5,65 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- bootstrap  -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- raw css -->
     <link rel="stylesheet" href="./css/style.css">
+
     <title>Money Management</title>
 </head>
 
 <body>
-    <!-- Heading or title Section -->
+    <!-- title area -->
     <header>
-        <h1 class="title">Money Monitor <img src="./images/budget.png" alt=""></h1>
+        <div class="container">
+            <h1 class="text-center mt-4 font-weight-bold title-color text-primary">Money Monitor <img
+                    src="./images/budget.png" alt="" style="width: 2.5rem;"></h1>
+        </div>
     </header>
 
-    <!-- main area -->
     <main>
-        <div class="main-area">
-            <div class="main-image">
-                <img src="./images/image-1.jpg" alt="">
-            </div>
-            <div>
 
+        <section class="container mt-5">
+            <div class="row">
+                <!-- title area -->
+                <div class="col-12 col-sm-6">
+                    <img class="img-fluid" src="./images/image-1.jpg" alt="">
+                </div>
+                <!-- Calculation area -->
+                <div class="col-12 col-sm-6">
+                    <h4 class="text-center">Income</h4>
+                    <div class="row">
+                        <h5 class="col-5 text-right">Income:</h5>
+                        <p class="col-7"><input type="text"></p>
+                    </div>
+                    <h4 class="text-center">Expenses</h4>
+                    <div class="row">
+                        <h5 class="col-5 text-right">Food:</h5>
+                        <p class="col-7"><input type="text"></p>
+                    </div>
+                    <div class="row">
+                        <h5 class="col-5 text-right">Rent:</h5>
+                        <p class="col-7"><input type="text"></p>
+                    </div>
+                    <div class="row">
+                        <h5 class="col-5 text-right">Clothes:</h5>
+                        <p class="col-7"><input type="text"></p>
+                    </div>
+                    <div class="text-center mb-4">
+                        <button class="btn btn-primary px-5">Calculate</button>
+                    </div>
+                    <h4 class="text-center">Total Expenses: <span>000</span> </h4>
+                    <h4 class="text-center">Balance: <span>000</span></h4>
+                    <h5 class="text-center my-4">Save: <input class="w-25 mx-3" type="text"> % <button
+                            class="btn btn-primary px-5 mx-5 my-2">Save</button>
+                    </h5>
+                    <h4 class="text-center">Saving Amount: <span>000</span> </h4>
+                    <h4 class="text-center">Remaining Balance: <span>000</span> </h4>
+                </div>
             </div>
-        </div>
+        </section>
     </main>
 </body>
 
