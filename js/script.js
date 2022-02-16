@@ -1,45 +1,58 @@
-/* ---------------------------------------------
-Calculating total expenses with error handling
- ---------------------------------------------*/
+/* ------------------------------
+Error handling reusable functions 
+  ------------------------------*/
+
+function expensesErrorHandling(item, gotError) {
+    if (gotError) {
+        document.getElementById(item).style.border = '4px solid red';
+        document.getElementById(item + '-error').style.display = 'block';
+    }
+    else {
+        document.getElementById(item).style.border = '1px solid gray';
+        document.getElementById(item + '-error').style.display = 'none';
+    }
+}
+
+
+function incomeAndExpensesErrorHandling(item, gotError) {
+    if (gotError) {
+        document.getElementById(item).style.border = '4px solid red';
+    }
+    else {
+        document.getElementById(item).style.border = '1px solid gray';
+    }
+}
+
+/* ----------------------------------
+Total Expenses calculating function 
+  ---------------------------------*/
 function totalExpense() {
     let foodCost = document.getElementById('food-cost');
-    let rent = document.getElementById('rent');
+    let rent = document.getElementById('rent-cost');
     let clothesCost = document.getElementById('clothes-cost');
 
     let totalExpenses = document.getElementById('total-expenses');
 
     if (foodCost.value < 0 || foodCost.value == '') {
-        document.getElementById('food-cost').style.border = '4px solid red';
-        document.getElementById('food-cost-error').style.display = 'block';
-
+        expensesErrorHandling('food-cost', true);
     }
+
     else if (rent.value < 0 || rent.value == '') {
-        document.getElementById('rent').style.border = '4px solid red';
-        document.getElementById('rent-error').style.display = 'block';
-
-        document.getElementById('food-cost').style.border = '1px solid gray';
-        document.getElementById('food-cost-error').style.display = 'none';
-
+        expensesErrorHandling('rent-cost', true);
+        expensesErrorHandling('food-cost');
     }
-    else if (clothesCost.value < 0 || clothesCost.value == '') {
-        document.getElementById('clothes-cost').style.border = '4px solid red';
-        document.getElementById('clothes-cost-error').style.display = 'block';
 
-        document.getElementById('rent').style.border = '1px solid gray';
-        document.getElementById('rent-error').style.display = 'none';
+    else if (clothesCost.value < 0 || clothesCost.value == '') {
+        expensesErrorHandling('clothes-cost', true);
+        expensesErrorHandling('rent-cost');
     }
 
     else if (parseFloat(foodCost.value) >= 0 && parseFloat(rent.value) >= 0 && parseFloat(clothesCost.value) >= 0) {
         let totalCost = parseFloat(foodCost.value) + parseFloat(rent.value) + parseFloat(clothesCost.value);
 
-        document.getElementById('food-cost').style.border = '1px solid gray';
-        document.getElementById('food-cost-error').style.display = 'none';
-
-        document.getElementById('rent').style.border = '1px solid gray';
-        document.getElementById('rent-error').style.display = 'none';
-
-        document.getElementById('clothes-cost').style.border = '1px solid gray';
-        document.getElementById('clothes-cost-error').style.display = 'none';
+        expensesErrorHandling('food-cost');
+        expensesErrorHandling('rent-cost');
+        expensesErrorHandling('clothes-cost');
 
         totalExpenses.innerText = totalCost;
 
@@ -47,9 +60,9 @@ function totalExpense() {
 
 }
 
-/* ---------------------------------------------
-Calculating Balance with error handling
- ---------------------------------------------*/
+/* --------------------------
+Balance Calculating Function
+ ---------------------------*/
 
 function checkingBalance() {
     let income = document.getElementById('income');
@@ -58,8 +71,7 @@ function checkingBalance() {
     let balance = document.getElementById('balance');
 
     if (income.value < 0 || income.value == '') {
-        document.getElementById('income').style.border = '4px solid red';
-        document.getElementById('income-error').style.display = 'block';
+        expensesErrorHandling('income', true);
 
         document.getElementById('income-error2').style.display = 'none';
 
@@ -68,26 +80,34 @@ function checkingBalance() {
     }
     else if (parseFloat(income.value) < parseFloat(totalExpenses.innerText)) {
         document.getElementById('income').style.border = '4px solid red';
-        document.getElementById('income-error2').style.display = 'block';
 
+        document.getElementById('income-error2').style.display = 'block';
         document.getElementById('income-error').style.display = 'none';
+
+        incomeAndExpensesErrorHandling('food-cost', true);
+        incomeAndExpensesErrorHandling('rent-cost', true);
+        incomeAndExpensesErrorHandling('clothes-cost', true);
 
         balance.innerText = '000';
     }
 
     else {
         balance.innerText = parseFloat(income.value) - parseFloat(totalExpenses.innerText);
-        document.getElementById('income').style.border = '1px solid gray';
+
+        expensesErrorHandling('income');
+
+        incomeAndExpensesErrorHandling('food-cost');
+        incomeAndExpensesErrorHandling('rent-cost');
+        incomeAndExpensesErrorHandling('clothes-cost');
 
         document.getElementById('income-error2').style.display = 'none';
-        document.getElementById('income-error').style.display = 'none';
 
     }
 }
 
-/* -----------------------
-Calculating savingAmount
- -------------------------*/
+/* --------------------------------
+Saving Amount Calculating Function
+ --------------------------------*/
 
 function savingAmountCalculation() {
     let savingPercentage = document.getElementById('saving-percentage');
@@ -98,29 +118,33 @@ function savingAmountCalculation() {
 }
 
 
-/* -------------------------------------------------
-Calculating remaining Balance with error handling
- --------------------------------------------------*/
+/* -------------------------------------
+Remaining Balance Calculating Function
+ -------------------------------------*/
 
 function remainingBalanceCalculation() {
     let balance = document.getElementById('balance');
     let savingAmount = document.getElementById('saving-amount');
+
     let remainingBalance = document.getElementById('remaining-balance');
+
     if (parseFloat(balance.innerText) == 0) {
         document.getElementById('saving-error2').style.display = 'block';
     }
     else if (parseFloat(balance.innerText) <= parseFloat(savingAmount.innerText)) {
-        document.getElementById('saving-percentage').style.border = '4px solid red';
-        document.getElementById('saving-error').style.display = 'block';
+        expensesErrorHandling('saving-percentage', true);
+
         remainingBalance.innerText = '000';
     }
     else {
         remainingBalance.innerText = parseFloat(balance.innerText) - parseFloat(savingAmount.innerText);
-        document.getElementById('saving-percentage').style.border = '1px solid gray';
-        document.getElementById('saving-error').style.display = 'none';
+        expensesErrorHandling('saving-percentage');
+
+        document.getElementById('saving-error2').style.display = 'none';
     }
 
 }
+
 
 /*-------------------
 added eventlistener

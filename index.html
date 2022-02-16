@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./CSS/style.css">
 
     <title>Money Management</title>
 </head>
@@ -28,11 +28,11 @@
         <section class="container mt-5">
             <div class="row">
                 <!-- title area -->
-                <div class="col-12 col-md-6">
+                <div class="col-12 col-md-6 overflow-hidden">
                     <img class="img-fluid" src="./images/image-1.jpg" alt="">
                 </div>
                 <!-- Calculation area -->
-                <div class="col-12 col-md-6 px-1 pb-3">
+                <div class="col-12 col-md-6 px-1 pb-3 overflow-hidden">
                     <h4 class="text-center">Income</h4>
                     <div class="row">
                         <h5 class="col-5 text-right">Income:</h5>
@@ -45,36 +45,38 @@
                     </div>
                     <div class="row">
                         <h5 class="col-5 text-right">Rent:</h5>
-                        <p class="col-7"><input id="rent" type="text"></p>
+                        <p class="col-7"><input id="rent-cost" type="text"></p>
                     </div>
                     <div class="row">
                         <h5 class="col-5 text-right">Clothes:</h5>
                         <p class="col-7"><input id="clothes-cost" type="text"></p>
                     </div>
                     <p id="income-error" class="text-center text-danger font-weight-bold alart">Please Enter your INCOME
-                        amount in positive value.</p>
+                        <br>
+                        amount in positive value.
+                    </p>
                     <p id="income-error2" class="text-center text-danger font-weight-bold alart">You can't expense more
-                        money than your income. Please check your given info.</p>
+                        money than your income. <br> Please check your given info.</p>
                     <p id="food-cost-error" class="text-center text-danger font-weight-bold alart">You gave wrong amount
-                        in FOOD box, You
+                        in FOOD box, <br> You
                         have to give 0 or more than 0.</p>
-                    <p id="rent-error" class="text-center text-danger font-weight-bold alart">You gave wrong amount in
-                        RENT box, You
+                    <p id="rent-cost-error" class="text-center text-danger font-weight-bold alart">You gave wrong amount
+                        in
+                        RENT box, <br> You
                         have to give 0 or more than 0.</p>
                     <p id="clothes-cost-error" class="text-center text-danger font-weight-bold alart">You gave wrong
-                        amount
-                        in CLOTHES box, You
-                        have to give 0 or more than 0.</p>
+                        amount in CLOTHES box, <br> You have to give 0 or more than 0.</p>
                     <div class="text-center mb-4">
                         <button id="calculate-btn" class="btn btn-primary px-5">Calculate</button>
                     </div>
                     <h4 class="text-center">Total Expenses: <span id="total-expenses">000</span> </h4>
                     <h4 class="text-center">Balance: <span id="balance">000</span></h4>
-                    <p id="saving-error" class="text-center text-danger font-weight-bold alart">You can't Save all or
-                        more than
-                        you have!!</p>
+                    <p id="saving-percentage-error" class="text-center text-danger font-weight-bold alart">You can't
+                        Save all or more than you have!!</p>
                     <p id="saving-error2" class="text-center text-danger font-weight-bold alart">You are trying to save
-                        before calculating your expenses!!</p>
+                        <br>
+                        before calculating your expenses!!
+                    </p>
                     <h5 class="text-center my-4">Save: <input id="saving-percentage" class="w-25 mx-3" type="text"> %
                         <button id="saving" class="btn btn-primary px-5 mx-5 my-2">Save</button>
                     </h5>
