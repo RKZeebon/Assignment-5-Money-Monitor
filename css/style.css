@@ -1,0 +1,25 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.title{
+    font-size: 3rem;
+    color: #1c1cf0;
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.title img{
+    width: 3rem;
+}
+
+.main-area{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.main-image img{
+width: 100%;
+}
