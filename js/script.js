@@ -1,3 +1,6 @@
+/* ---------------------------------------------
+Calculating total expenses with error handling
+ ---------------------------------------------*/
 function totalExpense() {
     let foodCost = document.getElementById('food-cost');
     let rent = document.getElementById('rent');
@@ -44,6 +47,10 @@ function totalExpense() {
 
 }
 
+/* ---------------------------------------------
+Calculating Balance with error handling
+ ---------------------------------------------*/
+
 function checkingBalance() {
     let income = document.getElementById('income');
     let totalExpenses = document.getElementById('total-expenses');
@@ -74,6 +81,10 @@ function checkingBalance() {
     }
 }
 
+/* -----------------------
+Calculating savingAmount
+ -------------------------*/
+
 function savingAmountCalculation() {
     let savingPercentage = document.getElementById('saving-percentage');
     let income = document.getElementById('income');
@@ -83,6 +94,10 @@ function savingAmountCalculation() {
 }
 
 
+/* -------------------------------------------------
+Calculating remaining Balance with error handling
+ --------------------------------------------------*/
+
 function remainingBalanceCalculation() {
     let balance = document.getElementById('balance');
     let savingAmount = document.getElementById('saving-amount');
@@ -90,6 +105,7 @@ function remainingBalanceCalculation() {
     if (parseFloat(balance.innerText) <= parseFloat(savingAmount.innerText)) {
         document.getElementById('saving-percentage').style.border = '4px solid red';
         document.getElementById('saving-error').style.display = 'block';
+        remainingBalance.innerText = '000';
     }
     else {
         remainingBalance.innerText = parseFloat(balance.innerText) - parseFloat(savingAmount.innerText);
@@ -98,6 +114,10 @@ function remainingBalanceCalculation() {
     }
 
 }
+
+/*-------------------
+added eventlistener
+-------------------*/
 
 document.getElementById('calculate-btn').addEventListener('click', function () {
     totalExpense();
