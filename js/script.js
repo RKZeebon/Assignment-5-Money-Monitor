@@ -74,7 +74,37 @@ function checkingBalance() {
     }
 }
 
+function savingAmountCalculation() {
+    let savingPercentage = document.getElementById('saving-percentage');
+    let income = document.getElementById('income');
+    let savingAmount = document.getElementById('saving-amount');
+
+    savingAmount.innerText = parseFloat(income.value) * parseFloat(savingPercentage.value) / 100;
+}
+
+
+function remainingBalanceCalculation() {
+    let balance = document.getElementById('balance');
+    let savingAmount = document.getElementById('saving-amount');
+    let remainingBalance = document.getElementById('remaining-balance');
+    if (parseFloat(balance.innerText) <= parseFloat(savingAmount.innerText)) {
+        document.getElementById('saving-percentage').style.border = '4px solid red';
+        document.getElementById('saving-error').style.display = 'block';
+    }
+    else {
+        remainingBalance.innerText = parseFloat(balance.innerText) - parseFloat(savingAmount.innerText);
+        document.getElementById('saving-percentage').style.border = '1px solid gray';
+        document.getElementById('saving-error').style.display = 'none';
+    }
+
+}
+
 document.getElementById('calculate-btn').addEventListener('click', function () {
     totalExpense();
     checkingBalance();
+})
+
+document.getElementById('saving').addEventListener('click', function () {
+    savingAmountCalculation();
+    remainingBalanceCalculation();
 })
