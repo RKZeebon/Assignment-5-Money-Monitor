@@ -101,10 +101,20 @@ Saving Amount Calculating Function
 
 function savingAmountCalculation() {
     let savingPercentage = document.getElementById('saving-percentage');
+    let savingPercent = parseFloat(savingPercentage.value);
+
     let income = document.getElementById('income');
+    let incomeAmount = parseFloat(income.value)
+
     let savingAmount = document.getElementById('saving-amount');
 
-    savingAmount.innerText = parseFloat(income.value) * parseFloat(savingPercentage.value) / 100;
+    if (isNaN(savingPercent) || isNaN(incomeAmount)) {
+        document.getElementById('saving-error2').style.display = 'block';
+    }
+    else {
+        savingAmount.innerText = incomeAmount * savingPercent / 100;
+        document.getElementById('saving-error2').style.display = 'block';
+    }
 }
 
 
