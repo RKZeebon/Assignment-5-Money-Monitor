@@ -1,10 +1,10 @@
 /* ------------------------------
-Error handling reusable functions 
+Error handling reusable function
   ------------------------------*/
 
 function expensesErrorHandling(item, gotError) {
     if (gotError) {
-        document.getElementById(item).style.border = '4px solid red';
+        document.getElementById(item).style.border = '2px solid red';
         document.getElementById(item + '-error').style.display = 'block';
     }
     else {
@@ -13,41 +13,36 @@ function expensesErrorHandling(item, gotError) {
     }
 }
 
-
-function incomeAndExpensesErrorHandling(item, gotError) {
-    if (gotError) {
-        document.getElementById(item).style.border = '4px solid red';
-    }
-    else {
-        document.getElementById(item).style.border = '1px solid gray';
-    }
-}
-
 /* ----------------------------------
 Total Expenses calculating function 
   ---------------------------------*/
 function totalExpense() {
     let foodCost = document.getElementById('food-cost');
+    let foodCostAmont = parseFloat(foodCost.value);
+
     let rent = document.getElementById('rent-cost');
+    let rentAmount = parseFloat(rent.value);
+
     let clothesCost = document.getElementById('clothes-cost');
+    let clothesCostAmount = parseFloat(clothesCost.value);
 
     let totalExpenses = document.getElementById('total-expenses');
 
-    if (foodCost.value < 0 || foodCost.value == '') {
+    if (foodCostAmont < 0 || isNaN(foodCostAmont)) {
         expensesErrorHandling('food-cost', true);
     }
 
-    else if (rent.value < 0 || rent.value == '') {
+    else if (rentAmount < 0 || isNaN(rentAmount)) {
         expensesErrorHandling('rent-cost', true);
         expensesErrorHandling('food-cost');
     }
 
-    else if (clothesCost.value < 0 || clothesCost.value == '') {
+    else if (clothesCostAmount < 0 || isNaN(clothesCostAmount)) {
         expensesErrorHandling('clothes-cost', true);
         expensesErrorHandling('rent-cost');
     }
 
-    else if (parseFloat(foodCost.value) >= 0 && parseFloat(rent.value) >= 0 && parseFloat(clothesCost.value) >= 0) {
+    else {
         let totalCost = parseFloat(foodCost.value) + parseFloat(rent.value) + parseFloat(clothesCost.value);
 
         expensesErrorHandling('food-cost');
@@ -66,11 +61,14 @@ Balance Calculating Function
 
 function checkingBalance() {
     let income = document.getElementById('income');
+    let incomeAmount = parseFloat(income.value);
+
     let totalExpenses = document.getElementById('total-expenses');
+    let totalExpensesAmount = parseFloat(totalExpenses.innerText);
 
     let balance = document.getElementById('balance');
 
-    if (income.value < 0 || income.value == '') {
+    if (incomeAmount < 0 || isNaN(incomeAmount)) {
         expensesErrorHandling('income', true);
 
         document.getElementById('income-error2').style.display = 'none';
@@ -78,15 +76,11 @@ function checkingBalance() {
         balance.innerText = '000';
 
     }
-    else if (parseFloat(income.value) < parseFloat(totalExpenses.innerText)) {
-        document.getElementById('income').style.border = '4px solid red';
+    else if (incomeAmount < totalExpensesAmount) {
+        document.getElementById('income').style.border = '2px solid red';
 
         document.getElementById('income-error2').style.display = 'block';
         document.getElementById('income-error').style.display = 'none';
-
-        incomeAndExpensesErrorHandling('food-cost', true);
-        incomeAndExpensesErrorHandling('rent-cost', true);
-        incomeAndExpensesErrorHandling('clothes-cost', true);
 
         balance.innerText = '000';
     }
@@ -95,10 +89,6 @@ function checkingBalance() {
         balance.innerText = parseFloat(income.value) - parseFloat(totalExpenses.innerText);
 
         expensesErrorHandling('income');
-
-        incomeAndExpensesErrorHandling('food-cost');
-        incomeAndExpensesErrorHandling('rent-cost');
-        incomeAndExpensesErrorHandling('clothes-cost');
 
         document.getElementById('income-error2').style.display = 'none';
 
